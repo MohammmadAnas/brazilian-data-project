@@ -68,7 +68,7 @@ Run terraform commands one by one
     ```bash
     terraform apply
     ```
-## Step 4: Get hands-on with Airflow 
+### 4: Get hands-on with Airflow 
 - From the project root folder, move to the `./airflow` directory
     ```bash
     cd airflow
@@ -114,8 +114,15 @@ Finally, the dataset identifying orders that missed the carrier delivery deadlin
 
 To run the job, make sure to first edit the paths of each of the scripts to match the paths where you'd like to run your analysis on your own machine and of course make sure to include the specific details of your S3 bucket. 
 
-One thing to note about the scripts is the `.set_upstream()` method applied to the second two operators. This ensures that if, for any reason, the initial file download fails that Airflow will retry the jobs. Another thing to note about the dag is the schedule, which I'm manually triggering using the Airflow UI. There's a lot more depth to job scheduling. 
+### 5. Visualise data on Metabase
+    
+Again we will install and run Metabase in a Docker container.
+```bash
+docker run -d -p 3033:3000 --name metabase metabase/metabase
+```
 
-But there you have it! This is a pretty simple pipeline, and shows how powerful Airflow can be in its ability to schedule various jobs using a variety of technologies like python and Spark. This only scratches the surface of what's capable with Airflow. 
+For the very first time of its execution, the above command downloads the latest Docker image available for Metabase before exposing the application on port `3033`.
 
-The next step in this process is incorporating AWS EMR into the pipeline to run the Spark job on a cluster instead of locally on my machine. Stay tuned for updates!
+Once the above command finishes its execution, Metabase should be available at [http://localhost:3033](http://localhost:3033).
+
+We can now connect our Redshift database to this platform and visualise the data in multiple charts.
