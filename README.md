@@ -106,13 +106,13 @@ Run terraform commands one by one
     ```bash
     docker-compose up
     ```
-[The late_shipments_to_carrier.py dag includes the three steps needed to complete our pipeline as defined above.]( https://github.com/ajupton/big-data-engineering-project/blob/master/airflow/dags/late_shipments_to_carrier_dag.py)
+[The late_shipments_to_carrier.py dag includes the three steps needed to complete our pipeline as defined above.]( https://github.com/MohammmadAnas/brazilian-data-project/blob/main/airflow/dags/late_shipments_to_carrier_dag.py)
 
-The first step is downloading the brazilian-ecommerce.zip file from your S3 bucket. [The script to accomplish this task is found here.](https://github.com/ajupton/big-data-engineering-project/blob/master/airflow/scripts/s3_download.py)
+The first step is downloading the brazilian-ecommerce.zip file from your S3 bucket. [The script to accomplish this task is found here.](https://github.com/MohammmadAnas/brazilian-data-project/blob/main/airflow/dags/scripts/s3_download.py)
 
-The next step is to run a Spark SQL job to do a pretty simply join of three relations and filter for orders/sellers that missed the delivery deadline to get their package to a designated carrier for shipment to the consumer. [This script first unzips the dataset, then sets up a Spark session, runs a simple Spark SQL operation, and then writes the results of the Spark SQL operation to a single csv file.](https://github.com/ajupton/big-data-engineering-project/blob/master/airflow/scripts/spark_missed_deadline_job.py)
+The next step is to run a Spark SQL job to do a pretty simply join of three relations and filter for orders/sellers that missed the delivery deadline to get their package to a designated carrier for shipment to the consumer. [This script first unzips the dataset, then sets up a Spark session, runs a simple Spark SQL operation, and then writes the results of the Spark SQL operation to a single csv file.](https://github.com/MohammmadAnas/brazilian-data-project/blob/main/airflow/dags/scripts/spark_missed_deadline_job.py)
 
-Finally, the dataset identifying orders that missed the carrier delivery deadline is uploaded to the same S3 bucket in a different folder. [This script also screens out non-csv files from being uploaded to keep the folder fairly clean.](https://github.com/ajupton/big-data-engineering-project/blob/master/airflow/scripts/s3_upload.py)
+Finally, the dataset identifying orders that missed the carrier delivery deadline is uploaded to the same S3 bucket in a different folder. [This script also screens out non-csv files from being uploaded to keep the folder fairly clean.](https://github.com/MohammmadAnas/brazilian-data-project/blob/main/airflow/dags/scripts/s3_upload.py)
 
 To run the job, make sure to first edit the paths of each of the scripts to match the paths where you'd like to run your analysis on your own machine and of course make sure to include the specific details of your S3 bucket. 
 
