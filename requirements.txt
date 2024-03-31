@@ -1,0 +1,5 @@
+apache-airflow-providers-amazon
+bs4
+pandas
+boto3
+findspark
