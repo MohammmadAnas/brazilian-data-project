@@ -43,7 +43,7 @@ To do so:
 
 ### 2. Clone the repository
 ```bash
-git clone https://github.com/HoracioSoldman/batch-processing-on-aws.git
+git clone https://github.com/MohammmadAnas/brazilian-data-project.git
 ```
 
 ### 3. Run Terraform
